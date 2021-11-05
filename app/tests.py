@@ -1,13 +1,17 @@
 from django.test import TestCase
 from app.models import Para
 from app.models import Post
+from app.serializers import ParaSerializer
+from app.serializers import PostSerializer
+from users.models import CustomUser
 # Create your tests here.
 class ModelTest(TestCase):
     def setUp(self) -> None:
         Para.objects.create(content="I'm the first paragraph");
         Para.objects.create(content="This is the SECOND para");
         Para.objects.create(content="The third paragraph");
-        Post.objects.create();
+        user = CustomUser.objects.create_user('username1', 'jad@gmail.com', 'password1')
+        post = Post.objects.create(owner=user);
 
     def test_append_to_paragraph(self):
         p1 = Para.objects.get(pk=1);
@@ -80,3 +84,9 @@ class ModelTest(TestCase):
         p3 = Para.objects.get(pk=3);
         self.assertEqual(p1.next, p3);
         self.assertEqual(p3.previous, p1);
+
+class SerializerTest(TestCase):
+    def test_serialize(self):
+        target = Para.objects.create(content="this is a test")
+        dict = ParaSerializer(target).data
+        self.assertEqual(dict['content'], "this is a test")
