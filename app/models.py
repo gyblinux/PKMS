@@ -1,6 +1,5 @@
 from django.db import models
-from django.db.models.deletion import CASCADE
-from django.db.models.fields import AutoField, DateField
+from django.conf import settings
 from users.models import CustomUser
 
 # Create your models here.
@@ -67,7 +66,7 @@ class Post(models.Model):
     # PK
     post_id = models.AutoField(primary_key=True)
     # props
-    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="posts")
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="posts")
     is_shared = models.BooleanField(default=False)
     last_modified = models.DateTimeField(auto_now=True)
     post_title = models.CharField(max_length=50, default="Untitled")
