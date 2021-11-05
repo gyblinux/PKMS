@@ -14,26 +14,12 @@ from rest_framework import generics
 class PostList(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-
 class PostDetail(generics.RetrieveAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-
+class ParaList(generics.ListCreateAPIView):
+    queryset = Para.objects.all()
+    serializer_class = ParaSerializer
 class ParaDetail(generics.RetrieveAPIView):
     queryset = Para.objects.all()
     serializer_class = ParaSerializer
-
-# @api_view(['GET'])
-# @csrf_exempt
-# def para_list(request):
-#     if request.method == 'GET':
-#         paras = Para.objects.all()
-#         serializer = ParaSerializer(paras, many=True)
-#         return JsonResponse(serializer.data, safe=False)
-
-# @csrf_exempt
-# def post(request):
-#     if request.method == 'GET':
-#         post = Post.objects.get(pk=1)
-#         serializer = PostSerializer(post, many=False)
-#         return JsonResponse(serializer.data, safe=False)

@@ -85,8 +85,22 @@ class ModelTest(TestCase):
         self.assertEqual(p1.next, p3);
         self.assertEqual(p3.previous, p1);
 
+import io
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
 class SerializerTest(TestCase):
-    def test_serialize(self):
-        target = Para.objects.create(content="this is a test")
-        dict = ParaSerializer(target).data
-        self.assertEqual(dict['content'], "this is a test")
+    def setUp(self) -> None:
+        pass
+    def test_serialize(self) -> None:
+        target_para = Para.objects.create(content="this is a test")
+        serialized_python_data = ParaSerializer(target_para).data
+        serialized_json_data = JSONRenderer().render(serialized_python_data)
+        # print(serialized_json_data)
+        self.assertEqual(serialized_python_data['content'], "this is a test")
+    # def test_deserialize(self) -> None:
+    #     json = b'{"para_id":6,"content":"this is a test","previous":1,"of_post":null}'
+    #     stream = io.BytesIO(json)
+    #     data = JSONParser().parse(stream)
+    #     serializer = ParaSerializer(data=data)
+    #     self.assertTrue(serializer.is_valid())
+    #     print(serializer.data)
