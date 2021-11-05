@@ -21,3 +21,8 @@ urlpatterns = [
     path('api/app/', include('app.urls')),
     path('api/users/', include('users.urls')),
 ]
+
+# rest_framework browsable API setting
+urlpatterns += [
+    path('api-auth/', include('rest_framework.urls')),
+]
