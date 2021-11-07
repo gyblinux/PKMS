@@ -39,11 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',       # for building RESTful APIs
+    "corsheaders",          # connect django-react
     'app.apps.AppConfig',   # for the main blog/wiki application
     'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
+    # appended third-party
+    "corsheaders.middleware.CorsMiddleware",    # for CORS working
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'PKMS.urls'
@@ -128,3 +133,4 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.CustomUser' # for auth users
+CORS_ORIGIN_ALLOW_ALL = True        # for CORS working
