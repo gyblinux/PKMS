@@ -19,7 +19,7 @@ export const PostGenerator = () => {
     return (
         <div>
             <ul>
-                {posts.map(post => <li key={post}>{post.post_id}</li>)}
+                {posts.map((post, index) => <li key={index}>{post.post_id}</li>)}
             </ul>
         </div>
     )
