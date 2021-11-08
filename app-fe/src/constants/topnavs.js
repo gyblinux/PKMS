@@ -1,4 +1,14 @@
-export const TOP_NAVS = [];
-TOP_NAVS.push("My Blog");
-TOP_NAVS.push("My Wiki");
-TOP_NAVS.push("Sign In/Up");
+export const TOP_NAVS = [
+    {
+        text: "My Blog",
+        link: "/blog",
+    },
+    {
+        text: "My Wiki",
+        link: "/wiki",
+    },
+    {
+        text: "Sign In/Up",
+        link: "#",
+    }
+];
