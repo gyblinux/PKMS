@@ -1,0 +1,8 @@
+.sidebar {
+    height: max-content;
+    width: 100%;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    background-color: green;
+}

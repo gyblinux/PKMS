@@ -1,0 +1,1 @@
+export const WIKI_SIDE_NAVS = ["Pending Notes", "Knowledge Database"];
