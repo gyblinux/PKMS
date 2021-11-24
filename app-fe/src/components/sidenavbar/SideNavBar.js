@@ -1,9 +1,9 @@
 import React from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import { useState, useEffect } from 'react';
-import { BLOG_SIDE_NAVS } from '../constants/blogsidenavs.js';
-import { WIKI_SIDE_NAVS} from '../constants/wikisidenav.js';
-import './styles/SideBar.css';
+import { BLOG_SIDE_NAVS } from '../../constants/index.js';
+import { WIKI_SIDE_NAVS} from '../../constants/index.js';
+import './SideBar.css'
 
 export const SideNavBar = (props) => {
 

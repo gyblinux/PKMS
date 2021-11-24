@@ -1,5 +1,6 @@
 from django.db.models import query
 from django.shortcuts import render
+from app.serializers import PostSerializer
 
 from rest_framework import generics
 from rest_framework import status
@@ -44,3 +45,22 @@ class UserLogin(APIView):
         }
         status_code = status.HTTP_200_OK
         return Response(response, status=status_code)
+
+class UserPostsList(generics.ListAPIView):
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        # queryset = super(CLASS_NAME, self).get_queryset()
+        u_pk: int = self.kwargs['pk']
+        u = CustomUser.objects.get(pk=u_pk)
+        queryset = u.posts.all()
+        return queryset
+
+class UserPostsDetail(generics.RetrieveAPIView):
+    serializer_class = PostSerializer
+
+    def get_object(self):
+        u_pk: int = self.kwargs['pk']
+        u = CustomUser.objects.get(pk=u_pk)
+        post = u.posts.get(post_id=self.kwargs['post_id'])
+        return post

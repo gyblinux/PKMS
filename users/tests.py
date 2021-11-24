@@ -9,6 +9,5 @@ class UserTest(TestCase):
         self.assertEqual(user.username, 'username1')
         self.assertEqual(user.email, 'jab@gmail.com')
         self.assertTrue(user.check_password('password1'))
-        self.assertEqual(user.age, 25)
         # checking user model's Primary Key is UID
         self.assertEqual(user.pk, user.id) # >> True, user.pk => user.id => 1

@@ -1,1 +1,0 @@
-export const BLOG_SIDE_NAVS = ["avatar", "author", "contact"]

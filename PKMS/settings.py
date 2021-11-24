@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     # native apps
     'app.apps.AppConfig',   # for the main blog/wiki application
     'users.apps.UsersConfig',
+
+    # third-part
+    'django_seed',
 ]
 
 MIDDLEWARE = [
