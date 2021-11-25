@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { useHistory } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 import axios from 'axios';
 
 import { API_USER_BASE_URL } from '../constants/index';
 
 export class LoginForm extends Component {
     
+    handleRedirect = () => {
+        const { history } = this.props;
+        if (history) history.push('/wiki/posts/list');
+    }
+
     handleFormSubmit = (event) => {
         event.preventDefault();
 

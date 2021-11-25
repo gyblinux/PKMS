@@ -1,3 +1,4 @@
+from typing import List
 from django.db import models
 from django.conf import settings
 from users.models import CustomUser
@@ -91,3 +92,20 @@ class Post(models.Model):
             if not probe.is_end(): probe = probe.next
             else: break
         return content
+
+    def _render_paras_id(self) -> List[int]:
+        probe = self.index_para
+        para_ids: List[int] = []
+        while (probe is not None) and (not probe.is_end()):
+            para_ids.append(probe.para_id)
+            probe = probe.next
+        return para_ids
+
+    @property
+    def render_paras(self) -> List["Para"]:
+        para_ids: List[int] = self._render_paras_id()
+        paras: List["Para"] = []
+        for id in para_ids:
+            paras.append(Para.objects.get(pk=id))
+        return paras
+
