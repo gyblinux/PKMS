@@ -11,3 +11,19 @@ class UserTest(TestCase):
         self.assertTrue(user.check_password('password1'))
         # checking user model's Primary Key is UID
         self.assertEqual(user.pk, user.id) # >> True, user.pk => user.id => 1
+
+from rest_framework.test import APITestCase
+from rest_framework.test import APIRequestFactory
+from rest_framework.test import APIClient
+from users import views
+class ApiIntegrationTest(APITestCase):
+    def setUp(self):
+        self.factory = APIRequestFactory()
+        self.loginview = views.UserLogin.as_view()
+        self.uri = '/login/'
+        self.client = APIClient()
+    def test_login(self):
+        self.client.login(username="username1", password="password1")
+        
+    
+    
