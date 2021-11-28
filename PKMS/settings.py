@@ -189,3 +189,5 @@ JWT_AUTH = {
     'JWT_AUTH_COOKIE': None,
 
 }
+
+ALLOWED_HOSTS = ['testserver']

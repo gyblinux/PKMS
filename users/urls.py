@@ -7,5 +7,5 @@ urlpatterns = [
     path('<int:pk>/posts/', views.UserPostsList.as_view()),
     path('<int:pk>/posts/<int:post_id>/', views.UserPostsDetail.as_view()),
     path('register/', views.UserCreate.as_view()),
-    path('login/', views.UserLogin.as_view()),
+    path('login/', views.UserLogin.as_view(), name='user-login'),
 ]
