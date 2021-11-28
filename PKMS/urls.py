@@ -17,12 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_jwt.views import obtain_jwt_token
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/app/', include('app.urls')),
     path('api/users/', include('users.urls')),
 ]
-
 # rest_framework browsable API setting
 urlpatterns += [
     path('api-auth/', include('rest_framework.urls')),

@@ -38,19 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # rest
-    'rest_framework',       # for building RESTful APIs
-    'rest_framework.authtoken',
-
-    # django-react share
-    'corsheaders',          # connect django-react
-    
     # native apps
-    'app.apps.AppConfig',   # for the main blog/wiki application
+    'app.apps.AppConfig',
     'users.apps.UsersConfig',
-
+    # rest
+    'rest_framework',
+    'rest_framework.authtoken',
     # third-part
-    'django_seed',
+    'corsheaders', # django-react content sharing middleware
+    'django_seed', # automated populating database for test purpose
+    'drf_yasg', # django-rest api schema documentation
 ]
 
 MIDDLEWARE = [
@@ -190,4 +187,4 @@ JWT_AUTH = {
 
 }
 
-ALLOWED_HOSTS = ['testserver']
+ALLOWED_HOSTS = ['*']
