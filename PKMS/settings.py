@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     # third-part
     'corsheaders', # django-react content sharing middleware
     'django_seed', # automated populating database for test purpose
-    # 'drf_yasg', # django-rest api schema documentation
+    'drf_yasg', # django-rest api schema documentation
 ]
 
 MIDDLEWARE = [
