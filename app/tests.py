@@ -6,6 +6,7 @@ from app.serializers import PostSerializer
 from users.models import CustomUser
 # Create your tests here.
 class ModelTest(TestCase):
+    """The test deals with all the database models"""
     def setUp(self) -> None:
         Para.objects.create(content="I'm the first paragraph")
         Para.objects.create(content="This is the SECOND para")
@@ -89,6 +90,7 @@ import io
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 class SerializerTest(TestCase):
+    """The test checks whether objects are properly serializaed"""
     @classmethod
     def setUpTestData(cls):
         # Set up data for the whole TestCase

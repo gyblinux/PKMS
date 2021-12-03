@@ -94,6 +94,7 @@ class Post(models.Model):
         return content
 
     def _render_paras_id(self) -> List[int]:
+        """This is a helper method when rendering the paras"""
         probe = self.index_para
         para_ids: List[int] = []
         while (probe is not None) and (not probe.is_end()):
@@ -103,6 +104,7 @@ class Post(models.Model):
 
     @property
     def render_paras(self) -> List["Para"]:
+        """call the method when serializing the Post object"""
         para_ids: List[int] = self._render_paras_id()
         paras: List["Para"] = []
         for id in para_ids:

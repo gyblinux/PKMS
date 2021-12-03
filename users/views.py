@@ -13,21 +13,48 @@ from users.serializers import CustomUserSerializer, RegistrationSerializer
 from users.serializers import LoginSerializer
 # Create your views here.
 class UserList(generics.ListAPIView):
+    """
+    Entry point: 
+        api/users/
+    Render: 
+        all the users registered
+    """
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
 
 class UserDetail(generics.RetrieveAPIView):
+    """
+    Entry point:
+        api/users/<int:user_pk>/
+    Permission:
+        logged in user with JWT token as the HTTP header
+    Render:
+        all information from the user model
+    """
+    permission_classes = (IsAuthenticated,)
+    authentication_class = JSONWebTokenAuthentication
+    
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
     
-    permission_classes = (IsAuthenticated,)
-    authentication_class = JSONWebTokenAuthentication
 
 class UserCreate(generics.CreateAPIView):
+    """
+    Entry point:
+        api/users/register/
+    Render:
+        new user account in the DB
+    """
     queryset = CustomUser.objects.all()
     serializer_class = RegistrationSerializer
 
 class UserLogin(APIView):
+    """
+    Entry point:
+        api/users/login/
+    Render:
+        login information with JWT token
+    """
     permission_classes = (AllowAny, )
     serializer_class = LoginSerializer
     
@@ -45,6 +72,12 @@ class UserLogin(APIView):
         return Response(response, status=status_code)
 
 class UserPostsList(generics.ListAPIView):
+    """
+    Entry point:
+        api/users/<int:user_pk>/posts/
+    Render:
+        all posts of the logged in user
+    """
     serializer_class = PostSerializer
 
     def get_queryset(self):
@@ -55,6 +88,12 @@ class UserPostsList(generics.ListAPIView):
         return queryset
 
 class UserPostsDetail(generics.RetrieveAPIView):
+    """
+    Entry point:
+        api/users/<int:user_pk>/posts/<int:post_pk>/
+    Render:
+        named post detail of current logged in user (with full list of paras)
+    """
     serializer_class = PostSerializer
 
     def get_object(self):
